@@ -1,0 +1,28 @@
+# Données runtime, secrets et artefacts locaux : jamais dans l'image.
+**/data/**
+**/.env*
+**/*.db*
+**/__pycache__/**
+**/.venv/**
+**/node_modules/**
+
+# Sous-projets hors périmètre de l'image standalone.
+1-Job-etudiant/**
+2-Stage-SOC/**
+3-Archives/**
+
+# Contexte de build inutile.
+.git/**
+.github/**
+.agents/**
+.cursor/**
+docs/**
+scripts/**
+templates/**
+integrations/**
+output/**
+test-results/**
+playwright-report/**
+*.pdf
+*.docx
+*.png

@@ -1,0 +1,43 @@
+# Career Copilot — Mission Control standalone.
+#
+# Démarrage depuis la racine du monorepo :
+#   docker compose -f Job-Etudiant/docker-compose.yml up -d
+#
+# Le port n'est publié que sur la boucle locale de l'hôte (127.0.0.1).
+# HOST=0.0.0.0 est volontaire : le processus écoute sur l'interface du conteneur,
+# mais Docker ne l'expose jamais hors de 127.0.0.1.
+
+services:
+  career-copilot:
+    build:
+      context: ..
+      dockerfile: Job-Etudiant/Dockerfile
+    container_name: career-copilot
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8765:8765"
+    environment:
+      STANDALONE_CAREER_MODE: "1"
+      DISABLE_AI: "${DISABLE_AI:-0}"
+      # Hôte interne au conteneur ; la publication reste limitée à 127.0.0.1.
+      HOST: "0.0.0.0"
+      PORT: "8765"
+      # Si vide, Mission Control génère un jeton persistant dans /app/data
+      # (volume career_copilot_auth, permissions 0600).
+      MISSION_CONTROL_TOKEN: "${MISSION_CONTROL_TOKEN:-}"
+    volumes:
+      # Profil candidat, offres, suivis et documents générés.
+      - career_copilot_data:/app/Job-Etudiant/bot/data
+      # Jeton Mission Control (évite d'écrire dans /app en read_only).
+      - career_copilot_auth:/app/data
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - "no-new-privileges:true"
+
+volumes:
+  career_copilot_data:
+  career_copilot_auth:

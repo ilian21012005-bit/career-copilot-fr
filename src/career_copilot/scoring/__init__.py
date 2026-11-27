@@ -1,0 +1,81 @@
+"""Deterministic offer scoring package (stage, alternance, student jobs)."""
+
+from __future__ import annotations
+
+from .engine import (
+    apply_fit_caps,
+    evaluate,
+    score_contract,
+    score_freshness,
+    score_level,
+    score_location,
+    score_skills,
+)
+from .models import (
+    BAC3_ACCEPTED,
+    DEVELOPMENT_ROLE_MARKERS,
+    LEVEL_MARKERS,
+    MAX_POINTS,
+    OFF_TARGET_HARD,
+    OFF_TARGET_SOFT,
+    OPERATIONAL_KEEP,
+    TARGET_KEYWORDS,
+    Score,
+    campaign_of,
+    is_eligible_for_plan,
+    summary,
+)
+from .rules import (
+    accepts_bac3,
+    candidate_level_rank,
+    deep_fit_flags,
+    duration_verdict,
+    exclusive_bac5_inge,
+    mission_reject,
+    off_target_hard,
+    parse_duration_range,
+    parse_duration_weeks,
+    stage_schedule_notes,
+)
+from .student_job import (
+    JOB_SKILL_GROUPS,
+    evaluate_student_job,
+    evaluate_student_job_contract,
+    evaluate_student_job_location,
+)
+
+__all__ = [
+    "BAC3_ACCEPTED",
+    "DEVELOPMENT_ROLE_MARKERS",
+    "JOB_SKILL_GROUPS",
+    "LEVEL_MARKERS",
+    "MAX_POINTS",
+    "OFF_TARGET_HARD",
+    "OFF_TARGET_SOFT",
+    "OPERATIONAL_KEEP",
+    "TARGET_KEYWORDS",
+    "Score",
+    "accepts_bac3",
+    "apply_fit_caps",
+    "campaign_of",
+    "candidate_level_rank",
+    "deep_fit_flags",
+    "duration_verdict",
+    "evaluate",
+    "evaluate_student_job",
+    "evaluate_student_job_contract",
+    "evaluate_student_job_location",
+    "exclusive_bac5_inge",
+    "is_eligible_for_plan",
+    "mission_reject",
+    "off_target_hard",
+    "parse_duration_range",
+    "parse_duration_weeks",
+    "score_contract",
+    "score_freshness",
+    "score_level",
+    "score_location",
+    "score_skills",
+    "stage_schedule_notes",
+    "summary",
+]

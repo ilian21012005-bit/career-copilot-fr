@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Career Copilot — Console de candidatures</title>
+    <link rel="stylesheet" href="/static/css/app.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Aller au contenu principal</a>
+
+    <header class="topbar" role="banner">
+      <div class="topbar-row">
+        <div class="topbar-brand">
+          <span class="brand-name">Career Copilot</span>
+          <span id="health-pill" class="badge badge-neutral" aria-live="polite">Vérification…</span>
+        </div>
+        <div class="topbar-tools">
+          <button type="button" id="btn-refresh" class="btn btn-secondary">Actualiser</button>
+          <button type="button" id="btn-token-toggle" class="btn btn-secondary" aria-expanded="false" aria-controls="auth-bar">
+            Jeton API
+          </button>
+          <button type="button" id="btn-theme-toggle" class="btn btn-ghost" aria-pressed="false">
+            Thème sombre
+          </button>
+        </div>
+      </div>
+
+      <nav class="topbar-nav" aria-label="Navigation principale" role="tablist">
+        <button type="button" class="nav-btn is-active" role="tab" aria-selected="true" data-view="overview">
+          Vue d'ensemble
+        </button>
+        <button type="button" class="nav-btn" role="tab" aria-selected="false" data-view="offers">
+          Offres
+        </button>
+        <button type="button" class="nav-btn" role="tab" aria-selected="false" data-view="applications">
+          Candidatures
+        </button>
+        <button type="button" class="nav-btn" role="tab" aria-selected="false" data-view="kits">
+          Dossiers
+        </button>
+        <button type="button" class="nav-btn" role="tab" aria-selected="false" data-view="runs">
+          Cycles &amp; Analytique
+        </button>
+        <button type="button" class="nav-btn" role="tab" aria-selected="false" data-view="setup">
+          Profil
+        </button>
+      </nav>
+    </header>
+
+    <section id="auth-bar" class="auth-bar" aria-label="Authentification API" hidden>
+      <div class="auth-bar-inner">
+        <div class="auth-copy">
+          <strong>Accès API local protégé</strong>
+          <p id="auth-hint" class="muted">
+            Saisissez le jeton Bearer généré dans le dossier de données local (stocké uniquement en session).
+          </p>
+        </div>
+        <form id="auth-form" class="auth-form" novalidate>
+          <label class="sr-only" for="token-input">Jeton Bearer</label>
+          <input
+            id="token-input"
+            name="token"
+            type="password"
+            class="input"
+            placeholder="Coller le jeton API…"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button type="submit" class="btn btn-primary">Valider</button>
+          <button type="button" id="btn-token-clear" class="btn btn-ghost">Effacer</button>
+        </form>
+      </div>
+    </section>
+
+    <main id="main-content" class="workspace">
+      <section class="summary-strip" aria-label="Indicateurs opérationnels">
+        <article class="metric-card">
+          <span class="metric-label">Offres actives</span>
+          <strong id="metric-offers" class="metric-value">—</strong>
+          <span id="metric-offers-sub" class="metric-sub">Total suivi : —</span>
+        </article>
+        <article class="metric-card">
+          <span class="metric-label">Dossiers prêts</span>
+          <strong id="metric-kits" class="metric-value">—</strong>
+          <span id="metric-profile-sub" class="metric-sub">Profil : —</span>
+        </article>
+        <article class="metric-card">
+          <span class="metric-label">Candidatures envoyées</span>
+          <strong id="metric-sent" class="metric-value">—</strong>
+          <span id="metric-reconcile-sub" class="metric-sub">Réconciliation : —</span>
+        </article>
+        <article class="metric-card">
+          <span class="metric-label">Aujourd'hui</span>
+          <strong id="metric-today" class="metric-value">—</strong>
+          <span id="metric-planned-sub" class="metric-sub">Planifiées : —</span>
+        </article>
+      </section>
+
+      <section id="panel-content" class="panel" aria-live="polite">
+        <div class="state-box">
+          <p class="muted">Chargement de l'espace de travail…</p>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast-region" class="toast-region" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <div id="detail-drawer" class="drawer-backdrop" role="dialog" aria-modal="true" aria-labelledby="drawer-title" hidden>
+      <div class="drawer-panel">
+        <div class="drawer-header">
+          <h2 id="drawer-title" class="drawer-title">Détail</h2>
+          <button type="button" id="drawer-close" class="btn btn-secondary" aria-label="Fermer le panneau">
+            Fermer
+          </button>
+        </div>
+        <div id="drawer-body" class="drawer-body"></div>
+      </div>
+    </div>
+
+    <script type="module" src="/static/js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,2 @@
+# Délègue au requirements.txt unifié à la racine du monorepo
+-r ../../requirements.txt
