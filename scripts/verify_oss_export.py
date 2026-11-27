@@ -57,6 +57,7 @@ EXCLUDED_FILES: frozenset[str] = frozenset(
         "mission_control.html",
         "notifier.py",
         "runtime_hooks.py",
+        "uv.lock",
     }
 )
 FORBIDDEN_SUFFIXES: tuple[str, ...] = (
